@@ -3,10 +3,8 @@ addu $9, $0, $8        # tempS = seed
 
 addi $10, $0, 0          # address counter
 sw $10, 0x2000($0)       # store addresss counter to 0x2000
-addi $11, $0, 0         # ctr = 0
-sw $11, 0x2004($0)      # store ctr to 0x2004
 addi $10, $0, 16         # numS = 16
-sw $10, 0x2008($0)       # store numS into 0x2008
+sw $10, 0x2004($0)       # store numS into 0x2004
 
 do_loop: 
         sw $9, 0x2010($11)         # store value $9 into mem address
@@ -19,7 +17,7 @@ do_loop:
             addi $8, $8, -1         # seed--
             bne $8, $0, loop        
 
-        sw $11, 0x200c($0)          # store current sq into 0x200c
+        sw $11, 0x2008($0)          # store current sq into 0x2008
 
         addu $8, $0, 0x000000FF     # 00...0011111111
         and $8, $11, $8             # preserves right most byte 
@@ -34,9 +32,9 @@ do_loop:
         and $9, $9, $10             # sign extend to 0
         addu $8, $0, $9             # seed = new 16 bit number
 
-        lw $10, 0x2008($0)          # load numS into $10
+        lw $10, 0x2004($0)          # load numS into $10
         addi $10, $10, -1           # numS--
-        sw $10, 0x2008($0)          # store numS into 0x2008
+        sw $10, 0x2004($0)          # store numS into 0x2004
 
         lw $11, 0x2000($0)          # load address counter into $11
         addi $11, $11, 4            # increment adress counter by 4
