@@ -20,13 +20,13 @@ do_loop:
         sw $11, 0x2008($0)          # store current sq into 0x2008
 
         addu $8, $0, 0x000000FF     # 00...0011111111
-        and $8, $11, $8             # preserves right most byte 
+        and $8, $8, $11             # preserves right most byte 
         
         addu $9, $0, 0xFF000000    # 1111111100...00
-        and $9, $11, $9            # preserves left most byte
+        and $9, $9, $11            # preserves left most byte
         srl $9, $9, 16             # position left most byte into the right places i.e. 16...9
 		
-        addu $9, $9, $8            # merge both left and right most bits
+        addu $9, $9, $8            # merge both left and right most bytes
 
         addu $10, $0, 0x0000FFFF    # 00...1111111111111111      
         and $9, $9, $10             # sign extend to 0
