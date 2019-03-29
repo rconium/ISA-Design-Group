@@ -63,10 +63,10 @@ loop1:	lw $9, ($8)		# load seed in current mem address
 		bne $9, $0, loop2	# while($9 != 0)
 		
 	lw $11, 0x2000($0)		# load sum into $11
-	add $11, $11, $10		# sum of 1's in all 16 seeds, Total Hamming weight
+	addu $11, $11, $10		# sum of 1's in all 16 seeds, Total Hamming weight
 	sw $11, 0x2000($0)		# store sum into 0x2000
 	
-	lw $11, 0x2004($0)		# load numS into 0x2004
+	lw $11, 0x2004($0)		# load numS into $11
 	addi $11, $11, -1		# decrement numS for each iteration by 1
 	sw $11, 0x2004($0)		# store numS into 0x2004
 	
