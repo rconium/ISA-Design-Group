@@ -257,6 +257,7 @@ def Simulate(I):
             if (Register[int(rt, 2)] != int(imm, 2)):
                 if (rx == '0'):
                     PC = uno
+                    print("Jump ------------> PC[" + str(PC) + "]")
                 elif (rx == '1'):
                     PC = dos
             else:
@@ -311,6 +312,10 @@ def Simulate(I):
 
             if (Register[int(rt, 2)] == 0):
                 PC = PC + 1 + getTwosComp2(imm)
+                if (getTwosComp2(imm) == -1):
+                    print("EXIT")
+                else:
+                    print("Branch ------------> PC[" + str(PC) + "]")
             else:
                 PC += 1
 
