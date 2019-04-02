@@ -110,7 +110,7 @@ Register = [0 for i in range(4)]
 printList = []
 
 def Simulate(I):
-    oFile = open("output.txt.", "w")
+    oFile = open("p3_g_x_prpg_sim_out_s0.txt.", "w")
     print("Welcome to the Simulation!")
     op =  ""
     rs = ""
@@ -147,6 +147,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # addi
         elif (op == "0001"):
             rt = binary[4:6]
@@ -161,6 +162,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # addu
         elif (op == "0010"):
             rt = binary[4:6]
@@ -175,6 +177,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # store
         elif (op == "0011"):
             rt = binary[4:6]
@@ -189,6 +192,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # mult
         elif (op == "0100"):
             rt = binary[4:6]
@@ -209,6 +213,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # splice
         elif (op == "0101"):
             rt = binary[4:6]
@@ -228,6 +233,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # jne
         elif (op == "0110"):
             rt = binary[4:6]
@@ -248,6 +254,7 @@ def Simulate(I):
 
             insertList(PC, newLine)
             instructionCount += 1
+
         # mark
         elif (op == "0111"):
             rx = binary[7]
@@ -264,6 +271,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # slti
         elif (op == "1000"):
             rt = binary[4:6]
@@ -281,6 +289,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # beq
         elif (op == "1001"):
             rt = binary[4:6]
@@ -291,12 +300,13 @@ def Simulate(I):
             print(pr)
 
             if (Register[int(rt, 2)] == 0):
-                PC = PC + getTwosComp2(imm)
+                PC = PC + 1 + getTwosComp2(imm)
             else:
                 PC += 1
 
             insertList(PC, newLine)
             instructionCount += 1
+            
         # sll
         elif (op == "1010"):
             rt = binary[4:6]
@@ -325,6 +335,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # srl
         elif (op == "1011"):
             rt = binary[4:6]
@@ -357,6 +368,7 @@ def Simulate(I):
             insertList(PC, newLine)
             PC += 1
             instructionCount += 1
+
         # load
         elif (op == "1100"):
             rt = binary[4:6]
@@ -386,7 +398,7 @@ def Simulate(I):
 
 
 def main():
-    iFile = open("input.txt", "r")
+    iFile = open("p3_g_x_prpg_s0.txt", "r")
     I  = []
     binary = ""
     word = ""
