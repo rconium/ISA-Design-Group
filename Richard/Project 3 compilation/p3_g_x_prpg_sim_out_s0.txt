@@ -1,5 +1,4 @@
-refresh $0 0
-addi $0 1
+refresh $0 1
 addi $0 1
 addi $0 1
 refresh $1 0
