@@ -67,6 +67,15 @@ def getTwosComp8(argument):
         val = int(argument, 2)
     return int(val)
 
+## Two's complement for 32 bits
+def getTwosComp32(argument):
+    if (argument[0] == '1'):
+        num = int(argument,2)
+        val = -2147483648 + (num - 2147483648)
+    else:
+        val = int(argument, 2)
+    return int(val)
+
 ## Returns bit size of a non-negative number
 def getBitSize(argument):
     sum = 0
@@ -248,6 +257,7 @@ def Simulate(I):
             if (Register[int(rt, 2)] != int(imm, 2)):
                 if (rx == '0'):
                     PC = uno
+                    print("Jump ------------> PC[" + str(PC) + "]")
                 elif (rx == '1'):
                     PC = dos
             else:
@@ -302,6 +312,10 @@ def Simulate(I):
 
             if (Register[int(rt, 2)] == 0):
                 PC = PC + 1 + getTwosComp2(imm)
+                if (getTwosComp2(imm) == -1):
+                    print("EXIT")
+                else:
+                    print("Branch ------------> PC[" + str(PC) + "]")
             else:
                 PC += 1
 
@@ -315,15 +329,15 @@ def Simulate(I):
 
             imm1 = Register[int(rt,2)] << int(imm,2)
 
-            if (imm1 < -128):
+            if (imm1 < -2147483648):
                 hold = bin(imm1)[3:]
 
-                imm1 = getTwosComp8(hold)
+                imm1 = getTwosComp32(hold)
                 Register[int(rt,2)] = -(imm1)
 
-            elif (imm1 >= 128):
+            elif (imm1 >= 2147483648):
                 temp = bin(imm1)[2:]
-                imm1 = getTwosComp8(temp)
+                imm1 = getTwosComp32(temp)
                 Register[int(rt,2)] = imm1
 
             else:
